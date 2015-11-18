@@ -179,15 +179,14 @@ class AirplaneSeats:
         os.system('cls')
         print "<<<Change Reserved Seat(s)>>>\n"
         original_seat = raw_input("From Seat Number: ")
-        if original_seat in self.leftSeatNumber or self.rightSeatNumber:
+        if original_seat in self.leftSeatNumber or original_seat in self.rightSeatNumber:
             original_seat_list = list(original_seat)
             if original_seat_list[0] == 'L':
                 if self.leftSeatStatus[int(original_seat_list[-1])] == 'Reserved':
                     new_seat = raw_input("To Seat Number: ")
                     new_seat_list = list(new_seat)
-                    if self.leftSeatStatus[int(new_seat_list[-1])] == 'vacant':
-                        if new_seat_list[0] == 'L':
-
+                    if new_seat_list[0] == 'L':
+                        if self.leftSeatStatus[int(new_seat_list[-1])] == 'vacant':
                             self.leftSeatStatus[int(original_seat_list[-1])] = 'vacant'
                             self.leftSeatStatus[int(new_seat_list[-1])] = 'Reserved'
                             print "Seat Number " + str(self.leftSeatNumber[int(original_seat_list[-1])]) + " is now " + str(self.leftSeatStatus[int(original_seat_list[-1])])
@@ -195,9 +194,30 @@ class AirplaneSeats:
                             print "<<<Seats has been processed>>>"
                             raw_input("<Press Enter to continue>")
                             self.restart_program()
+
+                    elif new_seat_list[0] == 'R':
+                        if self.rightSeatStatus[int(new_seat_list[-1])] == 'vacant':
+                            
+                            self.leftSeatStatus[int(original_seat_list[-1])] = 'vacant'
+                            self.leftSeatStatus[int(new_seat_list[-1])] = 'Reserved'
+                            print "Seat Number " + str(self.leftSeatNumber[int(original_seat_list[-1])]) + " is now " + str(self.leftSeatStatus[int(original_seat_list[-1])])
+                            print "Reserved seat has been transferred to "+str(self.leftSeatNumber[int(new_seat_list[-1])])+" which is now "+str(self.leftSeatStatus[int(new_seat_list[-1])]), "\n"
+                            print "<<<Seats has been processed>>>"
+                            raw_input("<Press Enter to continue>")
+                            self.restart_program()
+
+
+
+
+
+
+
+
+                        if new_seat_list[0] == 'L':
+
                         elif new_seat_list[0] == 'R':
                             self.leftSeatStatus[int(original_seat_list[-1])] = 'vacant'
-                            self.RightSeatStatus[int(new_seat_list[-1])] = 'Reserved'
+                            self.rightSeatStatus[int(new_seat_list[-1])] = 'Reserved'
                             print "Seat Number " + str(self.leftSeatNumber[int(original_seat_list[-1])]) + " is now " + str(self.leftSeatStatus[int(original_seat_list[-1])])
                             print "Reserved seat has been transferred to "+str(self.rightSeatNumber[int(new_seat_list[-1])])+" which is now "+str(self.rightSeatStatus[int(new_seat_list[-1])]), "\n"
                             print "<<<Seats has been processed>>>"
@@ -240,9 +260,7 @@ class AirplaneSeats:
                     print "No one is occupying the seat"
                     raw_input("<Press Enter to Restart Program>>")
                     self.modify_seat()
-
-
-        elif original_seat not in self.leftSeatNumber and self.rightSeatNumber:
+        elif original_seat not in self.leftSeatNumber and original_seat not in self.rightSeatNumber:
             print "Original Seat Number is not on this plane"
             print "Program will restart in 5 seconds!"
             x = 5
