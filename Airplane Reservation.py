@@ -194,28 +194,17 @@ class AirplaneSeats:
                             print "<<<Seats has been processed>>>"
                             raw_input("<Press Enter to continue>")
                             self.restart_program()
-
+                        elif self.leftSeatStatus[int(new_seat_list[-1])] == 'Reserved':
+                            print "The seat is already reserved"
+                            print "Program will restart in 5 seconds"
+                            x = 5
+                            while x != 0:
+                                print str(x)
+                                time.sleep(1)
+                                x -= 1
+                            self.modify_seat()
                     elif new_seat_list[0] == 'R':
                         if self.rightSeatStatus[int(new_seat_list[-1])] == 'vacant':
-                            
-                            self.leftSeatStatus[int(original_seat_list[-1])] = 'vacant'
-                            self.leftSeatStatus[int(new_seat_list[-1])] = 'Reserved'
-                            print "Seat Number " + str(self.leftSeatNumber[int(original_seat_list[-1])]) + " is now " + str(self.leftSeatStatus[int(original_seat_list[-1])])
-                            print "Reserved seat has been transferred to "+str(self.leftSeatNumber[int(new_seat_list[-1])])+" which is now "+str(self.leftSeatStatus[int(new_seat_list[-1])]), "\n"
-                            print "<<<Seats has been processed>>>"
-                            raw_input("<Press Enter to continue>")
-                            self.restart_program()
-
-
-
-
-
-
-
-
-                        if new_seat_list[0] == 'L':
-
-                        elif new_seat_list[0] == 'R':
                             self.leftSeatStatus[int(original_seat_list[-1])] = 'vacant'
                             self.rightSeatStatus[int(new_seat_list[-1])] = 'Reserved'
                             print "Seat Number " + str(self.leftSeatNumber[int(original_seat_list[-1])]) + " is now " + str(self.leftSeatStatus[int(original_seat_list[-1])])
@@ -223,9 +212,15 @@ class AirplaneSeats:
                             print "<<<Seats has been processed>>>"
                             raw_input("<Press Enter to continue>")
                             self.restart_program()
-                    elif self.leftSeatStatus[int(new_seat_list[-1])] == 'Reserved':
-                        print "The seat is already reserved"
-                        gui_display()
+                        elif self.rightSeatStatus[int(new_seat_list[-1])] == 'Reserved':
+                            print "The seat is already reserved"
+                            print "Program will restart in 5 seconds"
+                            x = 5
+                            while x != 0:
+                                print str(x)
+                                time.sleep(1)
+                                x -= 1
+                            self.modify_seat()
                 elif self.leftSeatStatus[int(original_seat_list[-1])] == 'vacant':
                     print "No one is occupying the seat"
                     raw_input("<Press Enter to Restart Program>>")
@@ -235,8 +230,9 @@ class AirplaneSeats:
                 if self.rightSeatStatus[int(original_seat_list[-1])] == 'Reserved':
                     new_seat = raw_input("To Seat Number: ")
                     new_seat_list = list(new_seat)
-                    if self.rightSeatStatus[int(new_seat_list[-1])] == 'vacant':
-                        if new_seat_list[0] == 'L':
+
+                    if new_seat_list[0] == 'L':
+                        if self.leftSeatStatus[int(new_seat_list[-1])] == 'vacant':
                             self.rightSeatStatus[int(original_seat_list[-1])] = 'vacant'
                             self.leftSeatStatus[int(new_seat_list[-1])] = 'Reserved'
                             print "Seat Number " + str(self.rightSeatNumber[int(original_seat_list[-1])]) + " is now " + str(self.rightSeatStatus[int(original_seat_list[-1])])
@@ -244,14 +240,33 @@ class AirplaneSeats:
                             print "<<<Seats has been processed>>>"
                             raw_input("<Press Enter to continue>")
                             self.restart_program()
-                        elif new_seat_list[0] == 'R':
+                        elif self.leftSeatStatus[int(new_seat_list[-1])] == 'Reserved':
+                            print "The seat is already reserved"
+                            print "Program will restart in 5 seconds"
+                            x = 5
+                            while x != 0:
+                                print str(x)
+                                time.sleep(1)
+                                x -= 1
+                            self.modify_seat()
+                    elif new_seat_list[0] == 'R':
+                        if self.rightSeatStatus[int(new_seat_list[-1])] == 'vacant':
                             self.rightSeatStatus[int(original_seat_list[-1])] = 'vacant'
                             self.rightSeatStatus[int(new_seat_list[-1])] = 'Reserved'
                             print "Seat Number " + str(self.rightSeatNumber[int(original_seat_list[-1])]) + " is now " + str(self.rightSeatStatus[int(original_seat_list[-1])])
-                            print "Reserved seat has been transferred to "+str(self.rightSeatNumber[int(new_seat_list[-1])])+" which is now "+str(self.rightSeatStatus[int(new_seat_list[-1])], "\n")
+                            print "Reserved seat has been transferred to "+str(self.rightSeatNumber[int(new_seat_list[-1])])+" which is now "+str(self.rightSeatStatus[int(new_seat_list[-1])]), "\n"
                             print "<<<Seats has been processed>>>"
                             raw_input("<Press Enter to continue>")
                             self.restart_program()
+                        elif self.rightSeatStatus[int(new_seat_list[-1])] == 'Reserved':
+                            print "The seat is already reserved"
+                            print "Program will restart in 5 seconds"
+                            x = 5
+                            while x != 0:
+                                print str(x)
+                                time.sleep(1)
+                                x -= 1
+                            self.modify_seat()
                     elif self.rightSeatStatus[int(new_seat_list[-1])] == 'Reserved':
                         print "The seat is already reserved"
                         raw_input("<Press Enter>")
